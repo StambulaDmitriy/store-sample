@@ -1,4 +1,9 @@
-<x-guest-layout>
+@extends('layouts.guest')
+
+@section('title','Регистрация')
+
+
+@section('content')
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
             <img aria-hidden="true" class="object-cover w-full h-full"
@@ -21,7 +26,7 @@
                         <x-input type="text"
                                  id="name"
                                  name="name"
-                                 class="block w-full"
+                                 class="block w-full rounded-md form-input"
                                  value="{{ old('name') }}"
                                  required
                                  autofocus/>
@@ -31,7 +36,7 @@
                         <x-label for="email" :value="__('Email')"/>
                         <x-input name="email"
                                  type="email"
-                                 class="block w-full"
+                                 class="block w-full rounded-md form-input"
                                  value="{{ old('email') }}"/>
                     </div>
 
@@ -39,7 +44,7 @@
                         <x-label for="password" :value="__('Password')"/>
                         <x-input type="password"
                                  name="password"
-                                 class="block w-full"
+                                 class="block w-full rounded-md form-input"
                                  required/>
                     </div>
 
@@ -47,7 +52,7 @@
                         <x-label id="password_confirmation" :value="__('Confirm Password')"/>
                         <x-input type="password"
                                  name="password_confirmation"
-                                 class="block w-full"
+                                 class="block w-full rounded-md form-input"
                                  required/>
                     </div>
 
@@ -61,9 +66,10 @@
                 <hr class="my-8"/>
 
                 <p class="mt-4">
+                    <span>Есть аккаунт?</span>
                     <a class="text-sm font-medium text-primary-600 hover:underline"
-                       href="{{ route('login') }}">{{ __('Already registered?') }}</a>
+                       href="{{ route('login') }}">Войти</a>
                 </p>
             </div>
         </div>
-</x-guest-layout>
+@endsection

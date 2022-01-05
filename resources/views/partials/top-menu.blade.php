@@ -34,7 +34,7 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link href="{{ route('profile.show') }}">
+                <x-dropdown-link href="{{ route('admin.profile.show') }}">
                     <x-slot name="icon">
                         <svg class="mr-3 w-4 h-4" aria-hidden="true" fill="none" stroke-linecap="round"
                              stroke-linejoin="round"

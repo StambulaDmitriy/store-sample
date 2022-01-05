@@ -1,4 +1,8 @@
-<x-guest-layout>
+@extends('layouts.guest')
+
+@section('title','Авторизация')
+
+@section('content')
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
             <img aria-hidden="true" class="object-cover w-full h-full"
@@ -23,7 +27,7 @@
                                  id="email"
                                  name="email"
                                  value="{{ old('email') }}"
-                                 class="block w-full"
+                                 class="block w-full rounded-md form-input"
                                  required
                                  autofocus/>
                     </div>
@@ -34,7 +38,7 @@
                         <x-input type="password"
                                  id="password"
                                  name="password"
-                                 class="block w-full"/>
+                                 class="block w-full rounded-md form-input"/>
                     </div>
 
                     <div class="flex mt-6 text-sm">
@@ -55,15 +59,13 @@
 
                 <hr class="my-8"/>
 
-                @if (Route::has('password.request'))
                     <p class="mt-4">
+                        <span>Нет аккаунта?</span>
                         <a class="text-sm font-medium text-primary-600 hover:underline"
-                           href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
+                           href="{{ route('register') }}">Зарегистрироваться</a>
                     </p>
-                @endif
+
             </div>
         </div>
     </div>
-</x-guest-layout>
+@endsection
