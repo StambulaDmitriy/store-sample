@@ -1,8 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        {{ __('My profile') }}
-    </x-slot>
+@extends('layouts.app')
 
+@section('title','Мой профиль')
+
+@section('content')
     @if ($message = Session::get('success'))
         <div class="inline-flex w-full mb-4 overflow-hidden bg-white rounded-lg shadow-md">
             <div class="flex items-center justify-center w-12 bg-green-500">
@@ -22,68 +22,98 @@
         </div>
     @endif
 
-    <div class="p-4 bg-white rounded-lg shadow-md">
+    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <div class="p-4 bg-white rounded-lg shadow-md">
 
-        <form action="{{ route('profile.update') }}" method="POST">
-            @csrf
-            @method('PUT')
+            <form action="{{ route('admin.profile.update') }}" method="POST">
+                @csrf
+                @method('PUT')
 
-            <div class="mt-4">
-                <x-label for="name" :value="__('Name')"/>
+                <div>
+                    <x-label for="name" :value="__('Name')"/>
+                    <x-input type="text"
+                             id="name"
+                             name="name"
+                             class="block w-full rounded-md form-input"
+                             value="{{ old('name', auth()->user()->name) }}"
+                             required/>
+                    @error('name')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="email" :value="__('Email')"/>
+                    <x-input name="email"
+                             type="email"
+                             class="block w-full rounded-md form-input"
+                             value="{{ old('email', auth()->user()->email) }}"
+                             required/>
+                    @error('email')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="password" :value="__('New password')"/>
+                    <x-input type="password"
+                             name="password"
+                             class="block w-full rounded-md form-input"
+                             required/>
+                    @error('password')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="mt-4">
+                    <x-label id="password_confirmation" :value="__('New password confirmation')"/>
+                    <x-input type="password"
+                             name="password_confirmation"
+                             class="block w-full rounded-md form-input"
+                             required/>
+                </div>
+
+                <div class="mt-4">
+                    <x-button class="block w-full">
+                        {{ __('Submit') }}
+                    </x-button>
+                </div>
+            </form>
+
+        </div>
+        <div class="p-4 bg-white rounded-lg shadow-md">
+            <form action="{{ route('admin.profile.update-settings') }}" method="POST">
+                @csrf
+                @method('PUT')
+
+
+                <x-label for="datatables_update_rate_ms" :value="'Частота обновления таблиц с данными, мс.'"/>
                 <x-input type="text"
-                         id="name"
-                         name="name"
-                         class="block w-full"
-                         value="{{ old('name', auth()->user()->name) }}"
-                         required/>
-                @error('name')
-                    <span class="text-xs text-red-600 dark:text-red-400">
+                         name="datatables_update_rate_ms"
+                         class="block w-full rounded-md form-input"
+                         value="{{ old('datatables_update_rate_ms') ?? Auth::user()->settings->datatables_update_rate_ms ?? 0 }}"
+                         />
+                @error('datatables_update_rate_ms')
+                <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
                     </span>
                 @enderror
-            </div>
 
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')"/>
-                <x-input name="email"
-                         type="email"
-                         class="block w-full"
-                         value="{{ old('email', auth()->user()->email) }}"
-                         required/>
-                @error('email')
-                    <span class="text-xs text-red-600 dark:text-red-400">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
+                <div class="mt-4">
+                    <x-button class="block w-full">
+                        {{ __('Submit') }}
+                    </x-button>
+                </div>
 
-            <div class="mt-4">
-                <x-label for="password" :value="__('New password')"/>
-                <x-input type="password"
-                         name="password"
-                         class="block w-full"
-                         required/>
-                @error('password')
-                    <span class="text-xs text-red-600 dark:text-red-400">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            <div class="mt-4">
-                <x-label id="password_confirmation" :value="__('New password confirmation')"/>
-                <x-input type="password"
-                         name="password_confirmation"
-                         class="block w-full"
-                         required/>
-            </div>
-
-            <div class="mt-4">
-                <x-button class="block w-full">
-                    {{ __('Submit') }}
-                </x-button>
-            </div>
-        </form>
-
+            </form>
+        </div>
     </div>
-</x-app-layout>
+
+
+@endsection

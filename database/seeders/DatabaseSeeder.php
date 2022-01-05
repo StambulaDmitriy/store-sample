@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $stores = Store::factory(10)->create();
-        $products = Product::factory(10)->create();
+        $products = Product::factory(100)->create();
 
         foreach ($stores as $store) {
             $products_assoc = [];
@@ -27,8 +27,6 @@ class DatabaseSeeder extends Seeder
                     'stock_quantity' => rand(1,1000)
                 ];
             }
-
-            Log::debug($products_assoc);
 
             $store->products()->attach($products_assoc);
         }

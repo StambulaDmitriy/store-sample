@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('products/{id}/stock-placemarks',[\App\Http\Controllers\IndexPageController::class,'api_get_product_stock_placemarks'])->name('api.products.stock-placemarks');

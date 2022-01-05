@@ -27,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Password::defaults(function () {
             return Password::min(5);
         });
+
+        require base_path('routes/breadcrumbs.php');
     }
 }

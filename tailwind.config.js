@@ -3,12 +3,6 @@ const plugin = require("tailwindcss/plugin");
 const Color = require("color");
 
 module.exports = {
-    purge: [
-        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
-        "./storage/framework/views/*.php",
-        "./resources/views/**/*.blade.php",
-    ],
-
     theme: {
         themeVariants: ["dark"],
         Forms: (theme) => ({
@@ -185,6 +179,6 @@ module.exports = {
         boxShadow: ["focus"],
     },
     plugins: [
-        require("@tailwindcss/forms")
+        require("@tailwindcss/forms"),
     ],
 };

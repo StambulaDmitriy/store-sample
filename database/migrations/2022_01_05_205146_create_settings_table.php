@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoreProductsTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateStoreProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('store_products', function (Blueprint $table) {
-            $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->integer('stock_quantity')->default(0);
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->integer('datatables_update_rate_ms')->default(5000);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateStoreProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_products');
+        Schema::dropIfExists('settings');
     }
 }

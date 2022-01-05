@@ -21,6 +21,9 @@ document.addEventListener('alpine:init', () => {
         isMultiLevelMenuOpen: false,
         toggleMultiLevelMenu() {
             this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
-        }
+        },
+
+        deleteModalOpen: false,
+        deleteModalAction: ''
     }))
 })

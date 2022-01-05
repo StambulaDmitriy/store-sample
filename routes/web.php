@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
+use App\Models\Store;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\IndexPageController::class,'index'])->name('index');
+Route::get('products/{id}', [\App\Http\Controllers\IndexPageController::class,'show_product'])->name('show-product');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
-    Route::view('about', 'about')->name('about');
-
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+Route::prefix('admin')->middleware('auth')->as('admin.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ProfileController::class,'dashboard_index'])->name('dashboard');
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::put('update-settings', [\App\Http\Controllers\ProfileController::class, 'update_settings'])->name('profile.update-settings');
+
+    Route::resource('products', ProductController::class)->except(['show']);
+    Route::get('products/export', [ProductController::class,'export'])->name('products.export');
+    Route::resource('stores', StoreController::class);
+
 });
