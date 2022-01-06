@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         foreach ($stores as $store) {
             $products_assoc = [];
 
-            foreach($products->random(rand(1,5)) as $product) {
+            foreach($products->random(rand(1,20)) as $product) {
                 $products_assoc[$product->id] = [
                     'stock_quantity' => rand(1,1000)
                 ];
