@@ -30,7 +30,7 @@ class ProfileController extends Controller
 
         Auth::user()->settings()->updateOrCreate([],['datatables_update_rate_ms' => $request->datatables_update_rate_ms]);
 
-        return redirect()->route('admin.profile.show')->with('success', 'Profile updated.');
+        return redirect()->route('admin.profile.show')->with('success', 'Настройки обновлены');
     }
 
     public function update(ProfileUpdateRequest $request)
@@ -44,6 +44,6 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('admin.profile.show')->with('success', 'Profile updated.');
+        return redirect()->route('admin.profile.show')->with('success', 'Данные обновлены.');
     }
 }

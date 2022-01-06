@@ -22,7 +22,7 @@
 
                     <!-- Input[ype="email"] -->
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
+                        <x-label :value="'Email'"/>
                         <x-input type="email"
                                  id="email"
                                  name="email"
@@ -34,7 +34,7 @@
 
                     <!-- Input[ype="password"] -->
                     <div class="mt-4">
-                        <x-label for="password" :value="__('Password')"/>
+                        <x-label for="password" :value="'Пароль'"/>
                         <x-input type="password"
                                  id="password"
                                  name="password"
@@ -46,14 +46,12 @@
                             <input type="checkbox"
                                    name="remember"
                                    class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
-                            <span class="ml-2">{{ __('Remember me') }}</span>
+                            <span class="ml-2">Запомнить меня</span>
                         </label>
                     </div>
 
                     <div class="mt-4">
-                        <x-button class="block w-full">
-                            {{ __('Log in') }}
-                        </x-button>
+                        <x-button class="block w-full">Войти</x-button>
                     </div>
                 </form>
 

@@ -32,7 +32,7 @@
     <p>Нет товаров</p>
 @endforelse
 </div>
-<div>
+<div class="mb-4">
     {{ $products->links('partials.paginator') }}
 </div>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Мой профиль')
+@section('title','Настройки')
 
 @section('content')
     @if ($message = Session::get('success'))
@@ -15,7 +15,7 @@
 
             <div class="px-4 py-2 -mx-3">
                 <div class="mx-3">
-                    <span class="font-semibold text-green-500">Success</span>
+                    <span class="font-semibold text-green-500">Успех</span>
                     <p class="text-sm text-gray-600">{{ $message }}</p>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 @method('PUT')
 
                 <div>
-                    <x-label for="name" :value="__('Name')"/>
+                    <x-label for="name" :value="'Имя'"/>
                     <x-input type="text"
                              id="name"
                              name="name"
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="email" :value="__('Email')"/>
+                    <x-label for="email" :value="'Email'"/>
                     <x-input name="email"
                              type="email"
                              class="block w-full rounded-md form-input"
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="password" :value="__('New password')"/>
+                    <x-label for="password" :value="'Новый пароль'"/>
                     <x-input type="password"
                              name="password"
                              class="block w-full rounded-md form-input"
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label id="password_confirmation" :value="__('New password confirmation')"/>
+                    <x-label id="password_confirmation" :value="'Повторите новый пароль'"/>
                     <x-input type="password"
                              name="password_confirmation"
                              class="block w-full rounded-md form-input"
@@ -80,9 +80,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-button class="block w-full">
-                        {{ __('Submit') }}
-                    </x-button>
+                    <x-button class="block w-full">Сохранить</x-button>
                 </div>
             </form>
 
@@ -106,9 +104,7 @@
                 @enderror
 
                 <div class="mt-4">
-                    <x-button class="block w-full">
-                        {{ __('Submit') }}
-                    </x-button>
+                    <x-button class="block w-full">Сохранить</x-button>
                 </div>
 
             </form>
